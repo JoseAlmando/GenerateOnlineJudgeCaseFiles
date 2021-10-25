@@ -1,0 +1,16 @@
+[
+  {
+    "ExerciseOne": [
+      {
+        "id": 1,
+        "input": "1 2",
+        "output": "3"
+      },
+      {
+        "id": 2,
+        "input": "3 2",
+        "output": "5"
+      }
+    ]
+  }
+]
