@@ -3,13 +3,18 @@
     "ExerciseOne": [
       {
         "id": 1,
-        "input": "1 2",
-        "output": "3"
+        "input": "8",
+        "output": "YES"
       },
-      {
+			{
         "id": 2,
-        "input": "3 2",
-        "output": "5"
+        "input": "5",
+        "output": "NO"
+      },
+			{
+        "id": 3,
+        "input": "4",
+        "output": "YES"
       }
     ]
   }
