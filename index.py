@@ -1,7 +1,7 @@
 import json
 import os
 
-def createDirectory(directory):
+def createTemporalDirectory(directory):
   try: 
     os.mkdir(directory) 
   except OSError as error: 
@@ -38,7 +38,7 @@ def createZipFile(name, directory):
       zip.write(os.path.join(root, file), file, compression)
   zip.close()
 
-def dropDirectory(directory):
+def removeTemporalDirectory(directory):
   import shutil
   shutil.rmtree(directory)
   
@@ -48,13 +48,15 @@ def main():
 
   for elementA in data:
     for directory in elementA:
-      createDirectory(directory)
+      createTemporalDirectory(directory)
+      i = 0
       for e in elementA[directory]:
-        createInputFile(e["id"], e["input"], directory)
-        createOutputFile(e["id"], e["output"], directory)
+        i += 1
+        createInputFile(i, e["input"], directory)
+        createOutputFile(i, e["output"], directory)
         addGitIgnore(directory)
         createZipFile(directory, directory)
-      dropDirectory(directory)
+      removeTemporalDirectory(directory)
 
 if __name__ == "__main__":
   main()
