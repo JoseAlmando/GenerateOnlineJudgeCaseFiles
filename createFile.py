@@ -59,5 +59,3 @@ def createFiles(file):
         addGitIgnore(directory)
         createZipFile(directory, directory)
       removeTemporalDirectory(directory)
-
-createFiles('preguntas')
