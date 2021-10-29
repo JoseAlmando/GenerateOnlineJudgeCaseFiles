@@ -1,23 +1,18 @@
 import json
 import os
 
-file = open("preguntas.json")
-data = json.load(file)
-
-def createInput(name, value, directory):
+def createDirectory(directory):
   try: 
     os.mkdir(directory) 
   except OSError as error: 
     pass
+
+def createInputFile(name, value, directory):
   f = open(directory+"/"+str(name)+".in", "w")
   f.write(value)
   f.close()
 
-def createOutput(name, value, directory):
-  try: 
-    os.mkdir(directory) 
-  except OSError as error: 
-    pass
+def createOutputFile(name, value, directory):
   f = open(directory+"/"+str(name)+".out", "w")
   f.write(value)
   f.close()
@@ -34,7 +29,6 @@ def addGitIgnore(dir):
 def createZipFile(name, directory):
   import zipfile
   try:
-      import zlib
       compression = zipfile.ZIP_DEFLATED
   except:
       compression = zipfile.ZIP_STORED
@@ -47,12 +41,20 @@ def createZipFile(name, directory):
 def dropDirectory(directory):
   import shutil
   shutil.rmtree(directory)
+  
+def main():
+  file = open("preguntas.json")
+  data = json.load(file)
 
-for elementA in data:
-  for element in elementA:
-    for e in elementA[element]:
-      createInput(e["id"], e["input"], element)
-      createOutput(e["id"], e["output"], element)
-      addGitIgnore(element)
-      createZipFile(element, element)
-    dropDirectory(element)
+  for elementA in data:
+    for directory in elementA:
+      createDirectory(directory)
+      for e in elementA[directory]:
+        createInputFile(e["id"], e["input"], directory)
+        createOutputFile(e["id"], e["output"], directory)
+        addGitIgnore(directory)
+        createZipFile(directory, directory)
+      dropDirectory(directory)
+
+if __name__ == "__main__":
+  main()

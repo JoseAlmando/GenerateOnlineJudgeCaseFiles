@@ -1,2 +1,1 @@
-"# GenerateOnlineJudgeCaseFiles" 
-"# GenerateOnlineJudgeCaseFiles" 
+# GenerateOnlineJudgeCaseFiles
