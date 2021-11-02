@@ -7,6 +7,10 @@ def createTemporalDirectory(directory):
   except OSError as error: 
     pass
 
+def removeTemporalDirectory(directory):
+  import shutil
+  shutil.rmtree(directory)
+  
 def createInputFile(name, value, directory):
   f = open(directory+"/"+str(name)+".in", "w")
   f.write(value)
@@ -37,12 +41,6 @@ def createZipFile(name, directory):
     for file in files:
       zip.write(os.path.join(root, file), file, compression)
   zip.close()
-
-def removeTemporalDirectory(directory):
-  import shutil
-  shutil.rmtree(directory)
-
-
  
 def createFiles(file):
   file = open(file + ".json")
